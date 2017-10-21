@@ -25,6 +25,14 @@ module Messaging
       messages.find_message id
     end
 
+    def transition_for_input(input:, previous:)
+      previous.transition_for_input(input)
+    end
+
+    def message_for_transition(transition)
+      find_message transition.target_message_id
+    end
+
     private
 
     attr_reader :entry, :exits, :messages

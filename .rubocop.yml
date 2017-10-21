@@ -19,6 +19,9 @@ Style/RegexpLiteral:
 Style/WordArray:
   Enabled: false
 
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
 

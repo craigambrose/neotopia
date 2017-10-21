@@ -1,3 +1,5 @@
+require_relative 'transition_group'
+
 module Messaging
   class Message
     def self.from_data(data)
@@ -8,9 +10,13 @@ module Messaging
       @id = data['id']
       @prompt = data['prompt']
       @responder = data['responder']
-      @transitions = data['transitions']
+      @transitions = TransitionGroup.from_data(data['transitions'])
     end
 
     attr_reader :id, :prompt, :responder, :transitions
+
+    def transition_for_input(input)
+      transitions.transition_for_input(input)
+    end
   end
 end
