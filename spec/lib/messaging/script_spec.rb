@@ -32,7 +32,7 @@ module Messaging
 
     describe '#message_for_transition' do
       it 'returns the message with the target id' do
-        message = subject.message_for_transition TransitionRule.new('whats_your_name?')
+        message = subject.message_for_transition Transitions::ToMessage.new('whats_your_name?')
 
         expect(message).to_not be_nil
         expect(message.prompt).to eq('How exciting, and what should I call you?')

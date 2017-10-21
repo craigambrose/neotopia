@@ -1,5 +1,6 @@
 require 'json'
 require_relative 'message_group'
+require_relative 'transitions/script_entry'
 
 module Messaging
   class Script
@@ -15,6 +16,8 @@ module Messaging
       )
     end
 
+    attr_reader :entry, :exits
+
     def initialize(entry, exits, messages)
       @entry = entry
       @exits = exits
@@ -26,7 +29,11 @@ module Messaging
     end
 
     def transition_for_input(input:, previous:)
-      previous.transition_for_input(input)
+      if previous
+        previous.transition_for_input(input)
+      else
+        Transitions::ScriptEntry.new(self)
+      end
     end
 
     def message_for_transition(transition)
@@ -35,6 +42,6 @@ module Messaging
 
     private
 
-    attr_reader :entry, :exits, :messages
+    attr_reader :messages
   end
 end

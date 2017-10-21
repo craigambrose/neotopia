@@ -1,4 +1,4 @@
-require_relative 'transition_rule'
+require_relative 'transitions/to_message'
 
 module Messaging
   class TransitionGroup
@@ -9,7 +9,7 @@ module Messaging
     def initialize(data)
       @rules = {}
       data.each do |key, value|
-        @rules[key] = TransitionRule.from_data(value)
+        @rules[key] = Transitions::ToMessage.from_data(value)
       end
     end
 

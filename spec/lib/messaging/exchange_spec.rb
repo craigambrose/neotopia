@@ -7,15 +7,23 @@ module Messaging
   describe Exchange do
     include MessagingHelpers
 
-    describe '#something' do
-      let(:script) { load_script(:two_messages) }
+    describe '#determine_response' do
+      context 'with a single script' do
+        let(:script) { load_script(:two_messages) }
+        subject { Exchange.new(script: script) }
 
-      it 'does something' do
-        exchange = Exchange.new(script: script)
-        exchange.user_input to: 'new_user?', input: { 'text' => 'yes' }
-        message = exchange.determine_response
+        it 'find the next message for simple text input' do
+          subject.user_input to: 'new_user?', input: { 'text' => 'yes' }
+          message = subject.determine_response
 
-        expect(message.id).to eq('whats_your_name?')
+          expect(message.id).to eq('whats_your_name?')
+        end
+
+        it 'find the entry message if no input is supplied' do
+          message = subject.determine_response
+
+          expect(message.id).to eq('new_user?')
+        end
       end
     end
   end
