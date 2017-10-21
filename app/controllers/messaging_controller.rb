@@ -7,11 +7,17 @@ class MessagingController < ApplicationController
   def index
     script = Messaging::Script.from_file script_path(:start)
     exchange = Messaging::Exchange.new script: script
+    exchange.user_input to: reply[:to], input: reply[:input] if reply
     message = exchange.determine_response
+
     render json: {message: message.as_json}
   end
 
   private
+
+  def reply
+    params[:reply]
+  end
 
   def script_path(name)
     Rails.root.join('app', 'scripts', "#{name}.json")
