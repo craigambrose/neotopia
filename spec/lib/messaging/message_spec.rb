@@ -19,5 +19,19 @@ module Messaging
         end
       end
     end
+
+    describe '#as_json' do
+      it 'returns correct data' do
+        message = load_message(:two_messages, 'new_user?')
+        expect(message.as_json).to eq(
+          id: 'new_user?',
+          prompt: 'Welcome, are you new here?',
+          responder: {
+            'responder_type' => 'select_option',
+            'options' => ['yes', 'no']
+          }
+        )
+      end
+    end
   end
 end

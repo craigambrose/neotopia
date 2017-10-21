@@ -34,32 +34,6 @@ decodeMessage =
         |> required "id" string
         |> required "prompt" string
         |> required "responder" decodeResponder
-        |> required "effects" (list decodeEffect)
-
-
-decodeEffect : Decoder Effect
-decodeEffect =
-    decode Effect
-        |> required "command" string
-        |> required "sequence" decodeEffectSequence
-
-
-decodeEffectSequence : Decoder EffectSequence
-decodeEffectSequence =
-    string |> andThen mapEffectSequence
-
-
-mapEffectSequence : String -> Decoder EffectSequence
-mapEffectSequence sequence_name =
-    case sequence_name of
-        "before" ->
-            succeed Before
-
-        "after" ->
-            succeed After
-
-        _ ->
-            fail ("Unknown effect sequence " ++ sequence_name)
 
 
 decodeResponder : Decoder Responder

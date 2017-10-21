@@ -18,5 +18,13 @@ module Messaging
     def transition_for_input(input)
       transitions.transition_for_input(input)
     end
+
+    def as_json
+      {
+        id: id,
+        prompt: prompt,
+        responder: responder
+      }
+    end
   end
 end

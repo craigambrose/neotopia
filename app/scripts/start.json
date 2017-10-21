@@ -1,0 +1,160 @@
+{
+  "entry": "new_user?",
+  "exits": [
+    "GET_STARTED",
+    "LEAVE_SITE"
+  ],
+  "messages": [
+    {
+      "id": "new_user?",
+      "prompt": "Welcome to Neotopia, are you new here?",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["yes", "no"]
+      },
+      "transitions": {
+        "yes": "whats_your_name?",
+        "no": "log_in_form"
+      }
+    },
+    {
+      "id": "log_in_form",
+      "prompt": "Welcome back. I’ll just need you to identify yourself and then we can pick up where we left off.",
+      "responder": {
+        "responder_type": "form",
+        "fields": [
+          {"name": "email", "field_type": "email"},
+          {"name": "password", "field_type": "password"}
+        ],
+        "buttons": [
+          {"name": "submit", "button_type": "submit"},
+          {"name": "cancel", "button_type": "cancel"}
+        ]
+      },
+      "command": "log_in",
+      "transitions": {
+        "DEFAULT": "logged_in",
+        "ERROR:user_not_found": {"to": "log_in_form", "overrides": {"prompt": "Sorry, I have no record of you. Are you sure you entered that email address correctly? Try again if you like."}},
+        "ERROR:missing_data": {"to": "log_in_form", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}},
+        "ERROR:unauthorized": {"to": "log_in_form", "overrides": {"prompt": "Hey, no funny business. Those aren't valid credentials. Maybe you just typed it wrong, feel free to try again."}},
+        "cancel": "new_user?"
+      }
+    },
+    {
+      "id": "logged_in",
+      "prompt": "Great work Craig, you built a login system!",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["again"]
+      },
+      "transitions": {
+        "again": "logged_in"
+      }
+    },
+    {
+      "id": "whats_your_name?",
+      "prompt": "How exciting, and what should I call you?",
+      "responder": {
+        "responder_type": "text"
+      },
+      "transitions": {
+        "DEFAULT": "should_explain_neotopia?"
+      },
+      "command": "set_name"
+    },
+    {
+      "id": "should_explain_neotopia?",
+      "prompt": "Hi {{current_user.name}}, welcome.\n\nDo you need me to explain what Neotopia is, or would you like to get started right away?",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["explain away", "no, get started"]
+      },
+      "transitions": {
+        "explain away": "explain_neotopia",
+        "no, get started": "collect_email"
+      }
+    },
+    {
+      "id": "explain_neotopia",
+      "prompt": "Neotopia is a utopia, which means a “no-place”, or a non-existent society described in detail. Most people use the world to mean a society too good to be true.\n\nNeotopia is a positive vision of a society well in our future that is much better than the one we have now. You get to determine what it looks like. Since it doesn’t exist, there’s no need to think small, think big and long term.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["why do that?", "get started"]
+      },
+      "transitions": {
+        "why do that?": "why_imagine_better_place?",
+        "no, get started": "collect_email"
+      }
+    },
+    {
+      "id": "why_imagine_better_place?",
+      "prompt": "Are you seriously asking me that {{current_user.name}}? Perhaps you think everything about the society you come from is fine the way it is?",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["yes, it’s fine", "OK, it’s far from perfect"]
+      },
+      "transitions": {
+        "yes, it’s fine": "LEAVE_SITE",
+        "OK, it’s far from perfect": "agree_vision_needed"
+      }
+    },
+    {
+      "id": "agree_vision_needed",
+      "prompt": "Exactly, and that’s why people like you come and visit this one. A vision of something much better is important for shaping things back home. There’s a place for small step-by-step changes, but sometimes you also need big vision.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["won’t that just make me depressed?", "OK fine, lets get started"]
+      },
+      "transitions": {
+        "won’t that just make me depressed?": "wont_that_make_me_depressed?",
+        "OK fine, lets get started": "collect_email"
+      }
+    },
+    {
+      "id": "wont_that_make_me_depressed?",
+      "prompt": "So cynical. I’m glad I don’t live where you come from. Look, perhaps it will a bit, but you can come visit Neotopia whenever you like, and perhaps there’s a way to take a bit of it back home with you. I can’t say more now, you really just need to dive in.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["get started", "this is not for me, sorry"]
+      },
+      "transitions": {
+        "get started": "collect_email",
+        "this is not for me, sorry": "LEAVE_SITE"
+      }
+    },
+    {
+      "id": "collect_email",
+      "prompt": "Ok {{current_user.name}}, I’m going to issue you with a tourist visa so you can explore Neotopia a bit. I'm going to need the usual, an email address and pasword from you so you can come back again later.",
+      "responder": {
+        "responder_type": "form",
+        "fields": [
+          {"name": "email", "field_type": "email"},
+          {"name": "password", "field_type": "password"}
+        ],
+        "buttons": [
+          {"name": "submit", "button_type": "submit"}
+        ]
+      },
+      "command": "sign_up",
+      "transitions": {
+        "DEFAULT": "signed_up",
+        "ERROR:missing_data": {"to": "sign_up", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}}
+      },
+      "client_effects": [
+        {"command": "enable_privacy_policy", "sequence": "after"}
+      ]
+    },
+    {
+      "id": "signed_up",
+      "prompt": "Great work Craig, you built a signup system!",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["again"]
+      },
+      "transitions": {
+        "again": "signed_up"
+      }
+    }
+  ]
+}
+

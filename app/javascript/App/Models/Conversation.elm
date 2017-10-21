@@ -9,22 +9,10 @@ type alias Exchange =
     }
 
 
-type EffectSequence
-    = Before
-    | After
-
-
-type alias Effect =
-    { command : String
-    , sequence : EffectSequence
-    }
-
-
 type alias Message =
     { id : String
     , prompt : String
     , responder : Responder
-    , effects : List Effect
     }
 
 

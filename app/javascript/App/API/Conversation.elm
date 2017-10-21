@@ -10,14 +10,21 @@ import App.API.Conversation.Encoders exposing (encodeInput)
 import Json.Decode exposing (Decoder)
 
 
+apiHost : String
+apiHost =
+    "http://localhost:3000"
+
+
+endpoint : String
+endpoint =
+    apiHost ++ "/api/chat"
+
+
 startConversation : Cmd Msg
 startConversation =
     let
-        url =
-            "http://localhost:4000/api/chat"
-
         request =
-            Http.get url decodeExchange
+            Http.get endpoint decodeExchange
     in
         Http.send ReceiveMessage request
 
@@ -25,14 +32,11 @@ startConversation =
 sendInput : Maybe String -> Message -> Input -> Cmd Msg
 sendInput authToken message input =
     let
-        url =
-            "http://localhost:4000/api/chat"
-
         body =
             encodeInput input message.id |> Http.jsonBody
 
         request =
-            post authToken url body decodeExchange
+            post authToken endpoint body decodeExchange
     in
         Http.send ReceiveMessage request
 
