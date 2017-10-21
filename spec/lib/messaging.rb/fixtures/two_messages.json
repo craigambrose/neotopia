@@ -1,0 +1,31 @@
+{
+  "entry": "new_user?",
+  "exits": [
+    "GET_STARTED",
+    "LEAVE_SITE"
+  ],
+  "messages": [
+    {
+      "id": "new_user?",
+      "prompt": "Welcome, are you new here?",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["yes", "no"]
+      },
+      "transitions": {
+        "yes": "whats_your_name?",
+        "no": "GET_STARTED"
+      }
+    },
+    {
+      "id": "whats_your_name?",
+      "prompt": "How exciting, and what should I call you?",
+      "responder": {
+        "responder_type": "text"
+      },
+      "transitions": {
+        "DEFAULT": "GET_STARTED"
+      }
+    }
+  ]
+}

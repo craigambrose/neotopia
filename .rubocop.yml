@@ -1,0 +1,47 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/read_model.rb'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 150
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*.rake"
+    - "config/environments/*.rb"
+  ExcludedMethods: ['describe', 'context']
+
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/*"
+
+Metrics/AbcSize:
+  Exclude:
+    - "db/migrate/*"
+  Max: 17
+
+Naming/PredicateName:
+  Enabled: false
