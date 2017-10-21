@@ -14,7 +14,7 @@ module Messaging
     end
 
     def transition_for_input(input)
-      rules[input['text']]
+      rules[input['text']] || rules['DEFAULT']
     end
 
     private

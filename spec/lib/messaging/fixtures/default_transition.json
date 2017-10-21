@@ -1,0 +1,28 @@
+{
+  "entry": "first",
+  "exits": [
+    "FINISHED"
+  ],
+  "messages": [
+    {
+      "id": "first",
+      "prompt": "The first prompt",
+      "responder": {
+        "responder_type": "text"
+      },
+      "transitions": {
+        "DEFAULT": "second"
+      }
+    },
+    {
+      "id": "second",
+      "prompt": "The second prompt",
+      "responder": {
+        "responder_type": "text"
+      },
+      "transitions": {
+        "DEFAULT": "FINISHED"
+      }
+    }
+  ]
+}

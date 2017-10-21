@@ -17,6 +17,15 @@ module Messaging
 
           expect(target.target_message_id).to eq('whats_your_name?')
         end
+
+        it 'returns id for default by default' do
+          message = load_message(:default_transition, 'first')
+          input = {'text' => 'some bollocks'}
+
+          target = message.transition_for_input(input)
+
+          expect(target.target_message_id).to eq('second')
+        end
       end
     end
 
