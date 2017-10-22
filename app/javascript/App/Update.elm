@@ -60,7 +60,7 @@ update msg model =
                         input =
                             bestInput text animatedMessage
                     in
-                        ( model, sendInput model.data.token animatedMessage.message input )
+                        ( model, sendInput model.config.baseUrl model.data.token animatedMessage.message input )
 
                 Nothing ->
                     ( model, Cmd.none )

@@ -15,28 +15,28 @@ apiHost =
     "http://localhost:3000"
 
 
-endpoint : String
-endpoint =
-    apiHost ++ "/api/chat"
+endpoint : String -> String
+endpoint baseUrl =
+    baseUrl ++ "/api/chat"
 
 
-startConversation : Cmd Msg
-startConversation =
+startConversation : String -> Cmd Msg
+startConversation baseUrl =
     let
         request =
-            Http.get endpoint decodeExchange
+            Http.get (endpoint baseUrl) decodeExchange
     in
         Http.send ReceiveMessage request
 
 
-sendInput : Maybe String -> Message -> Input -> Cmd Msg
-sendInput authToken message input =
+sendInput : String -> Maybe String -> Message -> Input -> Cmd Msg
+sendInput baseUrl authToken message input =
     let
         body =
             encodeInput input message.id |> Http.jsonBody
 
         request =
-            post authToken endpoint body decodeExchange
+            post authToken (endpoint baseUrl) body decodeExchange
     in
         Http.send ReceiveMessage request
 

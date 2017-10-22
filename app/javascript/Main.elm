@@ -9,16 +9,16 @@ import App.Subscriptions exposing (..)
 import App.API.Conversation exposing (startConversation)
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel
-    , startConversation
+init : AppConfig -> ( Model, Cmd Msg )
+init config =
+    ( initialModel config
+    , startConversation config.baseUrl
     )
 
 
-main : Program Never Model Msg
+main : Program AppConfig Model Msg
 main =
-    Html.program
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update

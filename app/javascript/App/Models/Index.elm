@@ -35,11 +35,16 @@ type alias AnimatedMessage =
     }
 
 
+type alias AppConfig =
+    { baseUrl : String }
+
+
 type alias Model =
     { animatedMessage : Maybe AnimatedMessage
     , error : Maybe String
     , mdl : Material.Model
     , data : Data
+    , config : AppConfig
     }
 
 
@@ -52,12 +57,13 @@ initAnimation =
     }
 
 
-initialModel : Model
-initialModel =
+initialModel : AppConfig -> Model
+initialModel appConfig =
     { animatedMessage = Nothing
     , error = Nothing
     , mdl = Material.model
     , data = initialData
+    , config = appConfig
     }
 
 
