@@ -4,8 +4,8 @@ module Messaging
       @namespace = command_namespace
     end
 
-    def process_command_named(name, input)
-      command_for_name(name).call(input)
+    def process_command_named(name, input, context = nil)
+      command_for_name(name).call(input, context)
     end
 
     def command_for_name(name)

@@ -25,7 +25,7 @@ class TestCommandProcessor
     @commands
   end
 
-  def process_command_named(name, input)
+  def process_command_named(name, input, _context)
     @commands << [name, input]
   end
 end

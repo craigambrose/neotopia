@@ -1,8 +1,8 @@
 module Users
   module Commands
     class SetName
-      def call(input)
-        raise "set name with input: #{input.inspect}"
+      def call(input, context)
+        context.user_name = input['text']
       end
     end
   end

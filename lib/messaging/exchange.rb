@@ -2,8 +2,9 @@ require_relative 'script'
 
 module Messaging
   class Exchange
-    def initialize(script:)
+    def initialize(script:, context: nil)
       @script = script
+      @context = context
       @previous_message = nil
       @input = nil
       @response_message = nil
@@ -23,18 +24,19 @@ module Messaging
       return unless previous_message
 
       previous_message.command_names.each do |command_name|
-        command_processor.process_command_named command_name, input
+        command_processor.process_command_named command_name, input, context
       end
     end
 
     def as_json
       {
-        message: response_message.as_json
+        message: response_message.as_json,
+        data: (context ? context.as_json : {})
       }
     end
 
     private
 
-    attr_reader :script, :previous_message, :response_message, :input
+    attr_reader :script, :previous_message, :response_message, :input, :context
   end
 end
