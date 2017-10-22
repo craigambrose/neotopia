@@ -26,5 +26,8 @@ module Messaging
         end
       end
     end
+
+    describe '#process_commands' do
+    end
   end
 end

@@ -6,6 +6,7 @@ module Messaging
       @script = script
       @previous_message = nil
       @input = nil
+      @response_message = nil
     end
 
     def user_input(to:, input:)
@@ -15,11 +16,19 @@ module Messaging
 
     def determine_response
       target = script.transition_for_input input: input, previous: previous_message
-      script.message_for_transition target
+      @response_message = script.message_for_transition target
+    end
+
+    def process_command(command_processor); end
+
+    def as_json
+      {
+        message: response_message.as_json
+      }
     end
 
     private
 
-    attr_reader :script, :previous_message, :input
+    attr_reader :script, :previous_message, :response_message, :input
   end
 end

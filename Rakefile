@@ -4,3 +4,21 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+if %w[development test].include? Rails.env
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+
+  task :rails_best_practices do
+    sh 'rails_best_practices .'
+  end
+
+  task :test_client do
+    sh 'yarn run test'
+  end
+
+  task ci: [:rubocop, :rails_best_practices, :spec] # , :test_client, :cucumber
+  task default: :ci
+end
+
+# task default: [:rubocop, :rails_best_practices, :test_client, :cucumber]
