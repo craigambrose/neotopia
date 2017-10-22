@@ -2,6 +2,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  schema_search_path: public, read_model
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 

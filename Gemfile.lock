@@ -40,6 +40,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    aggregate_root (0.18.1)
+      activesupport (>= 3.0)
     arel (8.0.0)
     ast (2.3.0)
     builder (3.2.3)
@@ -128,6 +130,17 @@ GEM
       json
       require_all
       ruby-progressbar
+    rails_event_store (0.18.1)
+      activejob (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      aggregate_root (= 0.18.1)
+      rails_event_store_active_record (= 0.18.1)
+      ruby_event_store (= 0.18.1)
+    rails_event_store_active_record (0.18.1)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      ruby_event_store (= 0.18.1)
     railties (5.1.4)
       actionpack (= 5.1.4)
       activesupport (= 5.1.4)
@@ -167,6 +180,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
+    ruby_event_store (0.18.1)
     rubyzip (1.2.1)
     sass (3.5.2)
       sass-listen (~> 4.0.0)
@@ -226,6 +240,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails_best_practices
+  rails_event_store
   rspec-rails
   rubocop
   sass-rails (~> 5.0)

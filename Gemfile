@@ -7,6 +7,8 @@ end
 
 gem 'rails', '~> 5.1.4'
 
+gem 'rails_event_store'
+
 gem 'jwt'
 gem 'pg'
 gem 'puma', '~> 3.7'
