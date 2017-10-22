@@ -14,7 +14,8 @@ module Messaging
       @command = data['command']
     end
 
-    attr_reader :id, :prompt, :responder, :transitions
+    attr_reader :id, :responder, :transitions
+    attr_accessor :prompt
 
     def transition_for_input(input)
       transitions.transition_for_input(input)
@@ -24,10 +25,10 @@ module Messaging
       command ? [command] : []
     end
 
-    def as_json
+    def as_json(interpolator = nil)
       {
         id: id,
-        prompt: prompt,
+        prompt: interpolator ? interpolated_prompt(interpolator) : prompt,
         responder: responder
       }
     end
@@ -35,5 +36,9 @@ module Messaging
     private
 
     attr_reader :command
+
+    def interpolated_prompt(interpolator)
+      interpolator.interpolate prompt
+    end
   end
 end

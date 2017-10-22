@@ -2,6 +2,7 @@ require 'spec_helper'
 require_relative 'messaging_helpers'
 
 require 'messaging/message'
+require 'messaging/interpolator'
 
 module Messaging
   describe Message do
@@ -40,6 +41,18 @@ module Messaging
             'options' => ['yes', 'no']
           }
         )
+      end
+
+      context 'with an interpolator' do
+        let(:interpolator) { instance_double('Messaging::Interpolator') }
+
+        it 'performs string interpolating using context' do
+          allow(interpolator).to receive(:interpolate).with('Welcome back {{current_user.name}}').and_return('Welcome back Bob')
+          message = load_message(:two_messages, 'new_user?')
+          message.prompt = 'Welcome back {{current_user.name}}'
+
+          expect(message.as_json(interpolator)[:prompt]).to eq('Welcome back Bob')
+        end
       end
     end
   end

@@ -1,10 +1,12 @@
 require_relative 'script'
+require_relative 'interpolator'
 
 module Messaging
   class Exchange
     def initialize(script:, context: nil)
       @script = script
       @context = context
+      @interpolator = Interpolator.new(context)
       @previous_message = nil
       @input = nil
       @response_message = nil
@@ -30,13 +32,14 @@ module Messaging
 
     def as_json
       {
-        message: response_message.as_json,
+        message: response_message.as_json(interpolator),
         data: (context ? context.as_json : {})
       }
     end
 
     private
 
-    attr_reader :script, :previous_message, :response_message, :input, :context
+    attr_reader :script, :previous_message, :response_message, :input,
+                :context, :interpolator
   end
 end
