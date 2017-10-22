@@ -19,7 +19,13 @@ module Messaging
       @response_message = script.message_for_transition target
     end
 
-    def process_command(command_processor); end
+    def process_commands(command_processor)
+      return unless previous_message
+
+      previous_message.command_names.each do |command_name|
+        command_processor.process_command_named command_name, input
+      end
+    end
 
     def as_json
       {

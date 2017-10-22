@@ -1,0 +1,20 @@
+{
+  "entry": "new_user?",
+  "exits": [
+    "FINISHED",
+    "LEAVE_SITE"
+  ],
+  "messages": [
+    {
+      "id": "with_command",
+      "prompt": "Who am I?",
+      "responder": {
+        "responder_type": "text"
+      },
+      "transitions": {
+        "DEFAULT": "FINISHED?"
+      },
+      "command": "have_existential_crisis"
+    }
+  ]
+}

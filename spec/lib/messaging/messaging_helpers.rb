@@ -15,3 +15,17 @@ module Messaging
     end
   end
 end
+
+class TestCommandProcessor
+  def initialize
+    @commands = []
+  end
+
+  def received_commands
+    @commands
+  end
+
+  def process_command_named(name, input)
+    @commands << [name, input]
+  end
+end
