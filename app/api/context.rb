@@ -17,6 +17,15 @@ class Context
     token.name
   end
 
+  def read_value(key)
+    case key
+    when 'current_user.name'
+      user_name
+    else
+      "*#{key}*"
+    end
+  end
+
   private
 
   attr_reader :token
