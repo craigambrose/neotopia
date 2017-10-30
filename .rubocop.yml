@@ -19,6 +19,9 @@ Style/RegexpLiteral:
 Style/WordArray:
   Enabled: false
 
+Style/GuardClause:
+  Enabled: false
+
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
 
