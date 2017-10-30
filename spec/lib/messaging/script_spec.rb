@@ -19,12 +19,12 @@ module Messaging
       end
     end
 
-    describe '#transition_for_input' do
+    describe '#transition_for' do
       it 'returns transition from the current message' do
         message = subject.find_message('new_user?')
         input = {'text' => 'yes'}
 
-        target = subject.transition_for_input(input: input, previous: message)
+        target = subject.transition_for(input: input, previous: message)
 
         expect(target.target_message_id).to eq('whats_your_name?')
       end

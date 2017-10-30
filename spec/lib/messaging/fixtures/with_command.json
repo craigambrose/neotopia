@@ -12,9 +12,13 @@
         "responder_type": "text"
       },
       "transitions": {
-        "DEFAULT": "FINISHED?"
+        "DEFAULT": "FINISHED?",
+        "ERROR:foobar": "foobar"
       },
       "command": "have_existential_crisis"
+    },
+    {
+      "id": "foobar"
     }
   ]
 }

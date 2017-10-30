@@ -28,9 +28,9 @@ module Messaging
       messages.find_message id
     end
 
-    def transition_for_input(input:, previous:)
+    def transition_for(input:, command_result: nil, previous:)
       if previous
-        previous.transition_for_input(input)
+        previous.transition_for(input, command_result)
       else
         Transitions::ScriptEntry.new(self)
       end

@@ -16,9 +16,18 @@ module Messaging
   end
 end
 
+class TestCommandFailure
+  def initialize(error_name)
+    @error_name = error_name
+  end
+
+  attr_reader :error_name
+end
+
 class TestCommandProcessor
   def initialize
     @commands = []
+    @result = nil
   end
 
   def received_commands
@@ -27,5 +36,10 @@ class TestCommandProcessor
 
   def process_command_named(name, input, _context)
     @commands << [name, input]
+    @result
+  end
+
+  def fail_with(error_string)
+    @result = TestCommandFailure.new error_string
   end
 end

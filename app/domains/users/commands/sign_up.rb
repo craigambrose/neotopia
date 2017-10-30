@@ -1,3 +1,5 @@
+require 'messaging/validation_failure'
+
 module Users
   module Commands
     class SignUp
@@ -20,7 +22,7 @@ module Users
           user_uuid = context.user_uuid
           publish_user_event user_uuid, Event.new(data: event_data)
         else
-          raise "failed validation with #{errors.inspect}"
+          Messaging::ValidationFailure.new(errors)
         end
       end
 

@@ -14,7 +14,7 @@ module Messaging
           message = load_message(:two_messages, 'new_user?')
           input = {'text' => 'yes'}
 
-          target = message.transition_for_input(input)
+          target = message.transition_for(input)
 
           expect(target.target_message_id).to eq('whats_your_name?')
         end
@@ -23,7 +23,7 @@ module Messaging
           message = load_message(:default_transition, 'first')
           input = {'text' => 'some bollocks'}
 
-          target = message.transition_for_input(input)
+          target = message.transition_for(input)
 
           expect(target.target_message_id).to eq('second')
         end

@@ -10,6 +10,7 @@ module Messaging
       @previous_message = nil
       @input = nil
       @response_message = nil
+      @command_result = nil
     end
 
     def user_input(to:, input:)
@@ -18,15 +19,19 @@ module Messaging
     end
 
     def determine_response
-      target = script.transition_for_input input: input, previous: previous_message
-      @response_message = script.message_for_transition target
+      target = script.transition_for input: input, command_result: command_result, previous: previous_message
+      if target
+        @response_message = script.message_for_transition target
+      else
+        raise 'no transition found'
+      end
     end
 
     def process_commands(command_processor)
       return unless previous_message
 
-      previous_message.command_names.each do |command_name|
-        command_processor.process_command_named command_name, input, context
+      if previous_message.command_name
+        @command_result = command_processor.process_command_named previous_message.command_name, input, context
       end
     end
 
@@ -40,6 +45,6 @@ module Messaging
     private
 
     attr_reader :script, :previous_message, :response_message, :input,
-                :context, :interpolator
+                :context, :interpolator, :command_result
   end
 end

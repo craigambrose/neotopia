@@ -17,12 +17,12 @@ module Messaging
     attr_reader :id, :responder, :transitions
     attr_accessor :prompt
 
-    def transition_for_input(input)
-      transitions.transition_for_input(input)
+    def transition_for(input, command_result = nil)
+      transitions.transition_for(input, command_result)
     end
 
-    def command_names
-      command ? [command] : []
+    def command_name
+      command
     end
 
     def as_json(interpolator = nil)

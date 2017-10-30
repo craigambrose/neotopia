@@ -8,17 +8,35 @@ module Messaging
 
     def initialize(data)
       @rules = {}
-      data.each do |key, value|
+      (data || {}).each do |key, value|
         @rules[key] = Transitions::ToMessage.from_data(value)
       end
     end
 
-    def transition_for_input(input)
-      rules[input['text']] || rules['DEFAULT']
+    def transition_for(input, command_result = nil)
+      if command_result
+        transition_for_error(command_result)
+      else
+        transition_for_input(input) || default_transition
+      end
     end
 
     private
 
     attr_reader :rules
+
+    def transition_for_error(command_result)
+      if command_result && command_result.error_name
+        rules["ERROR:#{command_result.error_name}"]
+      end
+    end
+
+    def transition_for_input(input)
+      rules[input['text']]
+    end
+
+    def default_transition
+      rules['DEFAULT']
+    end
   end
 end
