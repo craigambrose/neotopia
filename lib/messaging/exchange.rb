@@ -22,9 +22,11 @@ module Messaging
       target = script.transition_for input: input, command_result: command_result, previous: previous_message
       if target
         @response_message = script.message_for_transition target
+        raise "no message found to transition to with #{target.inspect}" unless @response_message
       else
         raise 'no transition found'
       end
+      @response_message
     end
 
     def process_commands(command_processor)

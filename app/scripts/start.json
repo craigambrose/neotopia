@@ -138,7 +138,7 @@
       "command": "sign_up",
       "transitions": {
         "DEFAULT": "signed_up",
-        "ERROR:missing_data": {"to": "sign_up", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}}
+        "ERROR:missing_data": {"to": "collect_email", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}}
       },
       "client_effects": [
         {"command": "enable_privacy_policy", "sequence": "after"}

@@ -5,7 +5,7 @@ module Messaging
     end
 
     def error_name
-      'validation_failure'
+      'missing_data'
     end
   end
 end
