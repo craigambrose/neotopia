@@ -32,5 +32,9 @@ class Token
     payload['name']
   end
 
+  def sub
+    payload['sub']
+  end
+
   attr_reader :payload
 end

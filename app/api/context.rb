@@ -17,6 +17,10 @@ class Context
     token.name
   end
 
+  def user_uuid
+    token.sub
+  end
+
   def read_value(key)
     case key
     when 'current_user.name'
