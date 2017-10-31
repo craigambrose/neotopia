@@ -33,6 +33,12 @@ module Messaging
       }
     end
 
+    def apply_overrides(overrides)
+      overrides.each do |key, value|
+        send("#{key}=", value)
+      end
+    end
+
     private
 
     attr_reader :command

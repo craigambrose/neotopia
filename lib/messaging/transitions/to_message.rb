@@ -29,7 +29,11 @@ module Messaging
         "<SimpleTransition: #{@target_message_id.inspect}>"
       end
 
-      attr_reader :target_message_id
+      def apply_overrides(message)
+        message.apply_overrides overrides if overrides
+      end
+
+      attr_reader :target_message_id, :overrides
     end
   end
 end

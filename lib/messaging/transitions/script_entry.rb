@@ -10,6 +10,10 @@ module Messaging
       def target_message_id
         script.entry
       end
+
+      def apply_overrides(message)
+        message
+      end
     end
   end
 end

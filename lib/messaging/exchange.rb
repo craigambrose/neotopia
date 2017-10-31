@@ -23,6 +23,8 @@ module Messaging
       if target
         @response_message = script.message_for_transition target
         raise "no message found to transition to with #{target.inspect}" unless @response_message
+
+        target.apply_overrides @response_message
       else
         raise 'no transition found'
       end
