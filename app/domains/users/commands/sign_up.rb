@@ -20,7 +20,8 @@ module Users
 
         if valid?
           user_uuid = context.user_uuid
-          publish_user_event user_uuid, Event.new(data: event_data)
+          publish_user_event user_uuid, Event.new(data: event_data(user_uuid))
+          nil
         else
           Messaging::ValidationFailure.new(errors)
         end
@@ -28,7 +29,7 @@ module Users
 
       private
 
-      def event_data
+      def event_data(user_uuid)
         {
           user_uuid: user_uuid,
           email: email,
