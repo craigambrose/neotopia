@@ -21,6 +21,8 @@ gem 'webpacker'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
   gem 'foreman'
   gem 'rails_best_practices', require: false
   gem 'rspec-rails'

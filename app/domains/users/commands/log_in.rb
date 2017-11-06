@@ -1,7 +1,5 @@
 module Users
   module Commands
-    class LogIn
-
-    end
+    class LogIn; end
   end
 end

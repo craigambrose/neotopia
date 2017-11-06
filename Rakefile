@@ -17,8 +17,6 @@ if %w[development test].include? Rails.env
     sh 'yarn run test'
   end
 
-  task ci: [:rubocop, :rails_best_practices, :spec] # , :test_client, :cucumber
+  task ci: [:rubocop, :rails_best_practices, :spec, :cucumber] # , :test_client
   task default: :ci
 end
-
-# task default: [:rubocop, :rails_best_practices, :test_client, :cucumber]

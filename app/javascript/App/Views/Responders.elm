@@ -50,6 +50,7 @@ textInputView config input mdlModel =
         mdlModel
         [ Options.on "keydown" (Json.Decode.andThen isEnter keyCode)
         , Options.onInput (InputResponse "text")
+        , Options.id "text-responder"
         , Textfield.value (inputValue input "text")
         ]
         []

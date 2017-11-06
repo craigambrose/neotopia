@@ -36,7 +36,9 @@ type alias AnimatedMessage =
 
 
 type alias AppConfig =
-    { baseUrl : String }
+    { baseUrl : String
+    , animate : Bool
+    }
 
 
 type alias Model =

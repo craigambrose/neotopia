@@ -33,22 +33,11 @@
       },
       "command": "log_in",
       "transitions": {
-        "DEFAULT": "logged_in",
+        "DEFAULT": "signed_up",
         "ERROR:user_not_found": {"to": "log_in_form", "overrides": {"prompt": "Sorry, I have no record of you. Are you sure you entered that email address correctly? Try again if you like."}},
         "ERROR:missing_data": {"to": "log_in_form", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}},
         "ERROR:unauthorized": {"to": "log_in_form", "overrides": {"prompt": "Hey, no funny business. Those aren't valid credentials. Maybe you just typed it wrong, feel free to try again."}},
         "cancel": "new_user?"
-      }
-    },
-    {
-      "id": "logged_in",
-      "prompt": "Great work Craig, you built a login system!",
-      "responder": {
-        "responder_type": "select_option",
-        "options": ["again"]
-      },
-      "transitions": {
-        "again": "logged_in"
       }
     },
     {
@@ -146,7 +135,7 @@
     },
     {
       "id": "signed_up",
-      "prompt": "Great work Craig, you built a signup system!",
+      "prompt": "You're logged in, but I haven't built the next bit",
       "responder": {
         "responder_type": "select_option",
         "options": ["again"]

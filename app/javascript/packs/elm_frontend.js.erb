@@ -4,5 +4,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.getElementById('root')
 
   document.body.appendChild(target)
-  Elm.Main.embed(target, {baseUrl: window.location.origin})
+  Elm.Main.embed(target, {baseUrl: window.location.origin, animate: <%= (!Rails.env.test?).to_json %>})
 })

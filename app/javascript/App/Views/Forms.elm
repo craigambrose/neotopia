@@ -79,6 +79,7 @@ textField mdlModel input index options fieldConfig =
             , Textfield.floatingLabel
             , Textfield.value (inputValue input fieldConfig.name)
             , Options.onInput (InputResponse fieldConfig.name)
+            , Options.id fieldConfig.name
             ]
 
         allOptions =

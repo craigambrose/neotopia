@@ -20,7 +20,7 @@ headersForData data =
                     []
 
         Maybe.Nothing ->
-            []
+            [ dummyHeader ]
 
 
 headerContents : User -> Html msg
@@ -33,6 +33,21 @@ headerContents user =
         , Layout.navigation []
             [ Layout.link
                 [ Options.attribute <| title user.name ]
+                [ Icon.i "person" ]
+            ]
+        ]
+
+
+dummyHeader : Html msg
+dummyHeader =
+    Layout.row
+        [ css "transition" "height 333ms ease-in-out 0s"
+        ]
+        [ Layout.title [] [ text "Neotopia" ]
+        , Layout.spacer
+        , Layout.navigation []
+            [ Layout.link
+                [ Options.attribute <| title "username" ]
                 [ Icon.i "person" ]
             ]
         ]

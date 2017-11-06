@@ -17,7 +17,7 @@ update msg model =
                 Just animatedMessage ->
                     let
                         animation =
-                            animateMessage animatedMessage diff
+                            optionallyAnimateMessage model.config animatedMessage diff
 
                         newAnimatedMessage =
                             { animatedMessage | animation = animation }
@@ -77,6 +77,31 @@ bestInput specifiedText animatedMessage =
 
         Just validText ->
             [ ( "text", validText ) ]
+
+
+optionallyAnimateMessage : AppConfig -> AnimatedMessage -> Time -> Animation
+optionallyAnimateMessage config animatedMessage diff =
+    if config.animate then
+        animateMessage animatedMessage diff
+    else
+        endAnimation animatedMessage
+
+
+endAnimation : AnimatedMessage -> Animation
+endAnimation animatedMessage =
+    let
+        animation =
+            animatedMessage.animation
+
+        charsPrinted =
+            length animatedMessage.message.prompt
+    in
+        -- { elapsed : Time
+        --     , charsPrinted : Int
+        --     , complete : Bool
+        --     , stage : MessageStage
+        --     }
+        { animation | charsPrinted = charsPrinted, stage = AwaitingResponse, complete = True }
 
 
 animateMessage : AnimatedMessage -> Time -> Animation
