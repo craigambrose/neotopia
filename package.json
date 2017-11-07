@@ -11,8 +11,5 @@
     "elm-hot-loader": "^0.5.4",
     "elm-test": "^0.18.9",
     "webpack-dev-server": "^2.9.3"
-  },
-  "scripts": {
-    "testelm": "yarn run elm-test"
   }
 }

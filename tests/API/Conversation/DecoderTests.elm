@@ -16,7 +16,6 @@ welcomeMessage =
         { config =
             SelectOptionResponder { options = [ "yes", "no" ] }
         }
-    , effects = []
     }
 
 
@@ -59,10 +58,7 @@ all =
                                         "responder_type": "select_option",
                                         "options": ["yes","no"]
                                     },
-                                    "prompt": "Welcome to Neotopia, are you new here?",
-                                    "effects": [
-                                        {"command": "enable_privacy_policy", "sequence": "after"}
-                                    ]
+                                    "prompt": "Welcome to Neotopia, are you new here?"
                                 }
                                 """
 
@@ -79,11 +75,6 @@ all =
                                     { config =
                                         SelectOptionResponder { options = [ "yes", "no" ] }
                                     }
-                                , effects =
-                                    [ { command = "enable_privacy_policy"
-                                      , sequence = After
-                                      }
-                                    ]
                                 }
                             )
             ]
@@ -100,8 +91,7 @@ all =
                                             "responder_type": "select_option",
                                             "options": ["yes","no"]
                                         },
-                                        "prompt": "Welcome to Neotopia, are you new here?",
-                                        "effects": []
+                                        "prompt": "Welcome to Neotopia, are you new here?"
                                     }
                                 }
                                 """
@@ -129,8 +119,7 @@ all =
                                             "responder_type": "select_option",
                                             "options": ["yes","no"]
                                         },
-                                        "prompt": "Welcome to Neotopia, are you new here?",
-                                        "effects": []
+                                        "prompt": "Welcome to Neotopia, are you new here?"
                                     },
                                     "data": {
                                         "user": {

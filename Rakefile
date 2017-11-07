@@ -14,9 +14,9 @@ if %w[development test].include? Rails.env
   end
 
   task :test_client do
-    sh 'yarn run test'
+    sh 'yarn run elm-test --fuzz=1'
   end
 
-  task ci: [:rubocop, :rails_best_practices, :spec, :cucumber] # , :test_client
+  task ci: [:rubocop, :rails_best_practices, :spec, :test_client, :cucumber]
   task default: :ci
 end
