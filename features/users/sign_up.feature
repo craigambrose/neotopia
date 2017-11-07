@@ -18,5 +18,3 @@ Scenario: Michael signs up
         | password | grokthis         |
   Then I should see a header bar
    And I read "You're logged in"
-
-

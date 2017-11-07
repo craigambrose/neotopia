@@ -26,3 +26,6 @@ end
 Capybara.javascript_driver = :headless_chrome
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+World(FactoryGirl::Syntax::Methods)
+require Rails.root.join('spec', 'factories')

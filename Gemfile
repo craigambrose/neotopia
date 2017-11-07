@@ -23,6 +23,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'factory_girl'
   gem 'foreman'
   gem 'rails_best_practices', require: false
   gem 'rspec-rails'

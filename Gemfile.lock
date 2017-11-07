@@ -89,6 +89,8 @@ GEM
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
     ffi (1.9.18)
     foreman (0.64.0)
       dotenv (~> 0.7.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   cucumber-rails
   database_cleaner
+  factory_girl
   foreman
   jwt
   listen (>= 3.0.5, < 3.2)
