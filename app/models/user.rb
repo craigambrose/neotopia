@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  validates :email, :password, :name, presence: true
+  validates :uuid, :email, :encrypted_password, :name, presence: true
 end

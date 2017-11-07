@@ -7,8 +7,6 @@ module Users
       include Passwords
       include UserEvents
 
-      class Event < RailsEventStore::Event; end
-
       attr_accessor :email, :password
 
       validates :email, presence: true, email_format: true
@@ -20,7 +18,8 @@ module Users
 
         if valid?
           user_uuid = context.user_uuid
-          publish_user_event user_uuid, Event.new(data: event_data(user_uuid))
+          user_name = context.user_name
+          publish_user_event user_uuid, Events::SignedUp.new(data: event_data(user_uuid, user_name))
           nil
         else
           Messaging::ValidationFailure.new(errors)
@@ -29,9 +28,10 @@ module Users
 
       private
 
-      def event_data(user_uuid)
+      def event_data(user_uuid, user_name)
         {
-          user_uuid: user_uuid,
+          uuid: user_uuid,
+          name: user_name,
           email: email,
           encrypted_password: encrypt_password(password)
         }
