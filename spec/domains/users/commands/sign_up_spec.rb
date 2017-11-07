@@ -15,12 +15,26 @@ module Users
             allow(context).to receive(:user_uuid).and_return(user_uuid)
             allow(context).to receive(:user_name).and_return('Jubal')
 
-            subject.call(input, context)
+            result = subject.call(input, context)
 
+            expect(result).to be_nil
             expect(latest_event).to be_a(::Users::Events::SignedUp)
             user = User.find_by_uuid(user_uuid)
             expect(user).not_to be_nil
             expect(user.name).to eq('Jubal')
+          end
+        end
+
+        context 'with invalid data' do
+          it 'returns validation failure and doesnt fire event' do
+            input = {'email' => 'jubal@user.com', 'password' => ''}
+            allow(context).to receive(:user_uuid).and_return(user_uuid)
+            allow(context).to receive(:user_name).and_return('Jubal')
+
+            result = subject.call(input, context)
+
+            expect(result).to be_a(Messaging::ValidationFailure)
+            expect(latest_event).to be_nil
           end
         end
       end

@@ -1,6 +1,6 @@
 module Messaging
   class ValidationFailure
-    def initialize(errors)
+    def initialize(errors = {})
       @errors = errors
     end
 
