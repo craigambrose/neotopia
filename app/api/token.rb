@@ -15,7 +15,7 @@ class Token
     end
   end
 
-  def initialize(payload)
+  def initialize(payload = {})
     @payload = payload
   end
 
@@ -34,6 +34,10 @@ class Token
 
   def sub
     payload['sub']
+  end
+
+  def sub=(value)
+    payload['sub'] = value
   end
 
   attr_reader :payload

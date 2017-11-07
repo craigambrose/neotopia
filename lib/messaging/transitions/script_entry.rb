@@ -14,6 +14,10 @@ module Messaging
       def apply_overrides(message)
         message
       end
+
+      def get_message(script)
+        script.find_message target_message_id
+      end
     end
   end
 end

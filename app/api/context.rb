@@ -13,6 +13,10 @@ class Context
     token.name = value
   end
 
+  def user_uuid=(value)
+    token.sub = value
+  end
+
   def user_name
     token.name
   end

@@ -83,8 +83,19 @@
         "options": ["yes, it’s fine", "OK, it’s far from perfect"]
       },
       "transitions": {
-        "yes, it’s fine": "LEAVE_SITE",
+        "yes, it’s fine": "its_fine",
         "OK, it’s far from perfect": "agree_vision_needed"
+      }
+    },
+    {
+      "id": "its_fine",
+      "prompt": "That sounds lovely {{current_user.name}}.\n\nOh, by the way, I've just heard back from border control. I'm unable to offer you a tourist visa just now.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["ok"]
+      },
+      "transitions": {
+        "ok": {"url": "https://www.nytimes.com/"}
       }
     },
     {
