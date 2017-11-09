@@ -5,8 +5,9 @@ class Context
 
   def as_json
     {
-      token: token.encoded
-    }
+      token: token.encoded,
+      user: user_as_json
+    }.compact
   end
 
   def user_name=(value)
@@ -37,6 +38,16 @@ class Context
   private
 
   attr_reader :token
+
+  def user_as_json
+    if user_name
+      {
+        id: user_uuid,
+        name: user_name,
+        logged_in: false
+      }
+    end
+  end
 
   def token_secret
     Rails.application.secrets.secret_key_base

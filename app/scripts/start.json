@@ -72,7 +72,7 @@
       },
       "transitions": {
         "why do that?": "why_imagine_better_place?",
-        "no, get started": "collect_email"
+        "get started": "collect_email"
       }
     },
     {

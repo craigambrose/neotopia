@@ -31,7 +31,6 @@ Scenario: Michael logs in to his existing account
   Then I should see a header bar
    And I read "You're logged in"
 
-@wip
 Scenario: Michael listens to intro and decides it's not for him
   Given I visit Neotopia
   When I read "Welcome to Neotopia, are you new here?"

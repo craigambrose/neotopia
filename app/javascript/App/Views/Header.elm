@@ -20,7 +20,7 @@ headersForData data =
                     []
 
         Maybe.Nothing ->
-            [ dummyHeader ]
+            []
 
 
 headerContents : User -> Html msg
