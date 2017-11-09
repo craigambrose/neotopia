@@ -16,6 +16,7 @@ welcomeMessage =
         { config =
             SelectOptionResponder { options = [ "yes", "no" ] }
         }
+    , url = Nothing
     }
 
 
@@ -75,6 +76,7 @@ all =
                                     { config =
                                         SelectOptionResponder { options = [ "yes", "no" ] }
                                     }
+                                , url = Nothing
                                 }
                             )
             ]
@@ -143,6 +145,40 @@ all =
                                 , data =
                                     { user = Just { id = "6", name = "bob", loggedIn = False }
                                     , token = Just "sometoken"
+                                    }
+                                }
+                            )
+            , test "decodes url redirect message" <|
+                \() ->
+                    let
+                        input =
+                            """
+                                {
+                                    "message": {
+                                        "id": "foobar",
+                                        "url": "http://www.example.com"
+                                    },
+                                    "data": {
+                                    }
+                                }
+                            """
+
+                        decodedOutput =
+                            Json.Decode.decodeString
+                                decodeExchange
+                                input
+                    in
+                        Expect.equal decodedOutput
+                            (Ok
+                                { message =
+                                    { id = "foobar"
+                                    , prompt = ""
+                                    , responder = { config = NoResponder }
+                                    , url = Just "http://www.example.com"
+                                    }
+                                , data =
+                                    { user = Nothing
+                                    , token = Nothing
                                     }
                                 }
                             )

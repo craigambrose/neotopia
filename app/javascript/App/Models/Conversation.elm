@@ -13,6 +13,7 @@ type alias Message =
     { id : String
     , prompt : String
     , responder : Responder
+    , url : Maybe String
     }
 
 

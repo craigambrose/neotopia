@@ -1,5 +1,6 @@
 module App.Update exposing (..)
 
+import Navigation exposing (load)
 import App.Models.Index exposing (..)
 import App.Messages exposing (..)
 import App.API.Conversation exposing (sendInput)
@@ -28,11 +29,16 @@ update msg model =
                     ( model, Cmd.none )
 
         ReceiveMessage (Ok exchange) ->
-            let
-                newAnimatedMessage =
-                    { message = exchange.message, animation = initAnimation, input = [] }
-            in
-                ( { model | animatedMessage = Just newAnimatedMessage, data = exchange.data }, Cmd.none )
+            case exchange.message.url of
+                Just url ->
+                    ( model, load url )
+
+                Nothing ->
+                    let
+                        newAnimatedMessage =
+                            { message = exchange.message, animation = initAnimation, input = [] }
+                    in
+                        ( { model | animatedMessage = Just newAnimatedMessage, data = exchange.data }, Cmd.none )
 
         ReceiveMessage (Err errorResponse) ->
             let

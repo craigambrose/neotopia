@@ -32,8 +32,9 @@ decodeMessage : Decoder Message
 decodeMessage =
     decode Message
         |> required "id" string
-        |> required "prompt" string
-        |> required "responder" decodeResponder
+        |> optional "prompt" string ""
+        |> optional "responder" decodeResponder { config = NoResponder }
+        |> optional "url" (map Just string) Nothing
 
 
 decodeResponder : Decoder Responder
