@@ -25,7 +25,7 @@ decodeUser =
     decode User
         |> required "id" string
         |> required "name" string
-        |> required "logged_in" bool
+        |> required "signed_up" bool
 
 
 decodeMessage : Decoder Message

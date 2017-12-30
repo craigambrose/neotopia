@@ -22,6 +22,9 @@ Style/WordArray:
 Style/GuardClause:
   Enabled: false
 
+Style/DoubleNegation:
+  Enabled: false
+
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
 

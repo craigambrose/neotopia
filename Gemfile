@@ -11,6 +11,7 @@ gem 'rails_event_store'
 
 gem 'bcrypt'
 gem 'jwt'
+gem 'memoist'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'

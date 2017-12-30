@@ -4,7 +4,7 @@ module App.Models.Data exposing (..)
 type alias User =
     { id : String
     , name : String
-    , loggedIn : Bool
+    , signedUp : Bool
     }
 
 

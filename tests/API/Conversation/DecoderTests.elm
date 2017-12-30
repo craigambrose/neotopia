@@ -127,7 +127,7 @@ all =
                                         "user": {
                                             "id": "6",
                                             "name": "bob",
-                                            "logged_in": false
+                                            "signed_up": false
                                         },
                                         "token": "sometoken"
                                     }
@@ -143,7 +143,7 @@ all =
                             (Ok
                                 { message = welcomeMessage
                                 , data =
-                                    { user = Just { id = "6", name = "bob", loggedIn = False }
+                                    { user = Just { id = "6", name = "bob", signedUp = False }
                                     , token = Just "sometoken"
                                     }
                                 }

@@ -12,7 +12,7 @@ headersForData : Data -> List (Html msg)
 headersForData data =
     case data.user of
         Just user ->
-            case user.loggedIn of
+            case user.signedUp of
                 True ->
                     [ headerContents user ]
 
