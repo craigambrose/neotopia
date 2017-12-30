@@ -2,5 +2,7 @@
 Todo:
   ✔ Find the next message given a text input direct match
   ✔ Find the first message with no input
+  ☐ When password is less that 8 charatecters, handle validation message
+
 
 

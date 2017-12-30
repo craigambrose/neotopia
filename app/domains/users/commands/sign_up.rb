@@ -10,7 +10,7 @@ module Users
       attr_accessor :email, :password
 
       validates :email, presence: true, email_format: true
-      validates :password, presence: true, length: {minimum: 8}
+      validates :password, presence: true
 
       def call(input, context)
         self.email = input['email']
