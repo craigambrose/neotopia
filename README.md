@@ -1,24 +1,9 @@
-# README
+# Neotopia
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A fun little app to ask you about the future.
 
-Things you may want to cover:
+[![Build Status](https://semaphoreci.com/api/v1/craigambrose/neotopia/branches/master/badge.svg)](https://semaphoreci.com/craigambrose/neotopia)
 
-* Ruby version
+# Developing
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is built with rails, Elm, and some other wierd magic.
