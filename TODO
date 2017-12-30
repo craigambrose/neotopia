@@ -2,8 +2,8 @@
 Todo:
   ✔ Find the next message given a text input direct match
   ✔ Find the first message with no input
-  ☐ User is logged in once they have signed up or logged in
-  ☐ Require email address to be unique
+  ✔ User is logged in once they have signed up or logged in @done(17-12-30 20:44)
+  ✔ Require email address to be unique @done(17-12-30 22:30)
 
 
 

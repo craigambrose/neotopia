@@ -28,12 +28,22 @@ module Users
         context 'with invalid data' do
           it 'returns validation failure and doesnt fire event' do
             input = {'email' => 'jubal@user.com', 'password' => ''}
-            allow(context).to receive(:user_uuid).and_return(user_uuid)
-            allow(context).to receive(:user_name).and_return('Jubal')
 
             result = subject.call(input, context)
 
             expect(result).to be_a(Messaging::ValidationFailure)
+            expect(latest_event).to be_nil
+          end
+
+          it 'sets the error_name to email_exists if duplicate found' do
+            michael = create(:user, :michael)
+
+            input = {'email' => michael.email, 'password' => 'validpass'}
+
+            result = subject.call(input, context)
+
+            expect(result).to be_a(Messaging::ValidationFailure)
+            expect(result.error_name).to eq('email_exists')
             expect(latest_event).to be_nil
           end
         end

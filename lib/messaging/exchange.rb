@@ -26,7 +26,7 @@ module Messaging
 
         target.apply_overrides @response_message
       else
-        raise 'no transition found'
+        raise "no transition found for #{command_result ? command_result.error_name : input}"
       end
       @response_message
     end

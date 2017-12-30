@@ -46,3 +46,31 @@ Scenario: Michael listens to intro and decides it's not for him
   When I read "I'm unable to offer you a tourist visa just now"
   Then I choose "ok"
   Then I'm redirected to "https://www.nytimes.com/"
+
+Scenario: Michael forgets that he's already signed up before
+  Given an existing user "Michael"
+  Given I visit Neotopia
+  Then I read "Welcome to Neotopia, are you new here?"
+  When I choose "Yes"
+  Then I read "How exciting, and what should I call you?"
+  When I answer "Michael"
+  Then I read "Do you need me to explain what Neotopia is"
+  When I choose "No, Get Started"
+  Then I read "Ok Michael, I’m going to issue you with a tourist visa"
+  When I fill in:
+        | email    | michael@user.com |
+        | password | grokthis         |
+  Then I read "Hmmm, it looks like an account for that email address already exists. Are you sure you haven't been here before?"
+  When I choose "I'll try a different address"
+  Then I read "No worries Michael, give it another shot"
+  When I fill in:
+        | email    | michael@user.com |
+        | password | grokthis         |
+  Then I read "Hmmm, it looks like an account for that email address already exists. Are you sure you haven't been here before?"
+  When I choose "Yes, that's me"
+  Then I read "Lets try a log-in instead. Pop your existing username and password in below."
+  When I fill in:
+        | email    | michael@user.com |
+        | password | grokthis         |
+  Then I should see a header bar
+   And I read "You're logged in"

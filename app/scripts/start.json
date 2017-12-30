@@ -138,11 +138,24 @@
       "command": "sign_up",
       "transitions": {
         "DEFAULT": "signed_up",
-        "ERROR:missing_data": {"to": "collect_email", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}}
+        "ERROR:missing_data": {"to": "collect_email", "overrides": {"prompt": "Ok, for this to work you actually have to enter an email and password. Give it another shot."}},
+        "ERROR:email_exists": {"to": "email_exists"}
       },
       "client_effects": [
         {"command": "enable_privacy_policy", "sequence": "after"}
       ]
+    },
+    {
+      "id": "email_exists",
+      "prompt": "Hmmm, it looks like an account for that email address already exists. Are you sure you haven't been here before?",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["yes, that's me", "i'll try a different address"]
+      },
+      "transitions": {
+        "i'll try a different address": {"to": "collect_email", "overrides": {"prompt": "No worries Michael, give it another shot"}},
+        "yes, that's me": {"to": "log_in_form", "overrides": {"prompt": "Lets try a log-in instead. Pop your existing username and password in below."}}
+      }
     },
     {
       "id": "signed_up",
