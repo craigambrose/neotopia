@@ -4,5 +4,5 @@ end
 
 Then("I'm redirected to {string}") do |url|
   sleep(1)
-  expect(page.current_url).to eq(url)
+  expect(page.current_url).to start_with(url)
 end

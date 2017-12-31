@@ -65,37 +65,76 @@
     },
     {
       "id": "explain_neotopia",
-      "prompt": "Neotopia is a utopia, which means a “no-place”, or a non-existent society described in detail. Most people use the world to mean a society too good to be true.\n\nNeotopia is a positive vision of a society well in our future that is much better than the one we have now. You get to determine what it looks like. Since it doesn’t exist, there’s no need to think small, think big and long term.",
+      "prompt": "Neotopia is a utopia, which means a “no-place”, or a non-existent society described in detail. Most people use the word to mean a society too good to be true.\n\nNeotopia is a positive vision of a society well in our future that is much better than the one we have now. You get to determine what it looks like. Since it doesn’t exist, there’s no need to think small, think big and long term.",
       "responder": {
         "responder_type": "select_option",
-        "options": ["why do that?", "get started"]
+        "options": ["why do that?", "ok, but how does it work?", "get started"]
       },
       "transitions": {
         "why do that?": "why_imagine_better_place?",
+        "ok, but how does it work?": "more_explanation",
         "get started": "collect_email"
       }
     },
     {
       "id": "why_imagine_better_place?",
-      "prompt": "Are you seriously asking me that {{current_user.name}}? Perhaps you think everything about the society you come from is fine the way it is?",
+      "prompt": "Even if you like things about the society you come from, surely you see some room for improvement, or perhaps change in response to new circumstances?",
       "responder": {
         "responder_type": "select_option",
-        "options": ["yes, it’s fine", "OK, it’s far from perfect"]
+        "options": ["well, a few things", "no, it's perfect"]
       },
       "transitions": {
-        "yes, it’s fine": "its_fine",
-        "OK, it’s far from perfect": "agree_vision_needed"
+        "well, a few things": "agree_vision_needed",
+        "no, it's perfect": "its_fine"
       }
     },
     {
       "id": "its_fine",
-      "prompt": "That sounds lovely {{current_user.name}}.\n\nOh, by the way, I've just heard back from border control. I'm unable to offer you a tourist visa just now.",
+      "prompt": "Given that, a visit to Neotopia may not be of much intest to you, although you're still welcome of course.",
       "responder": {
         "responder_type": "select_option",
-        "options": ["ok"]
+        "options": ["perhaps if you explained it more clearly", "i think i'll pass, goodbye"]
       },
       "transitions": {
-        "ok": {"url": "https://www.nytimes.com/"}
+        "perhaps if you explained it more clearly": "more_explanation",
+        "i think i'll pass, goodbye": {"url": "https://www.google.com/"}
+      }
+    },
+    {
+      "id": "more_explanation",
+      "prompt": "Think of me as a tour guide. Neotopia has as many possibilities as there are visitors, so I help people find where they want to go by asking them questions about how they might live in the future, even if it is only for a short visit.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["what sort of questions?", "what about my privacy?", "lets get started"]
+      },
+      "transitions": {
+        "what sort of questions?": "explain_questions",
+        "what about my privacy?": "explain_privacy",
+        "lets get started": "collect_email"
+      }
+    },
+    {
+      "id": "explain_questions",
+      "prompt": "I have a set of questions here about your preferred lifestyle in the future, who you might share that with, what sort of place you'd like to be in, and what sort of broader society that place might be found in. You can change your mind and visit different places, and you can help add questions to provide new options for other tourists.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["what about my privacy?", "lets get started"]
+      },
+      "transitions": {
+        "what about my privacy?": "explain_privacy",
+        "lets get started": "collect_email"
+      }
+    },
+    {
+      "id": "explain_privacy",
+      "prompt": "Your answers to all the questions are public, and it's possible that when you visit a certain part of Neotopia that you'll see and be seen by other tourists. However, you don't need to reveal anything about your identity back home. I wont share your email address or subscribe you to any weird mailing lists from any time period.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["what sort of questions?", "lets get started"]
+      },
+      "transitions": {
+        "what sort of questions?": "explain_questions",
+        "lets get started": "collect_email"
       }
     },
     {
@@ -103,23 +142,35 @@
       "prompt": "Exactly, and that’s why people like you come and visit this one. A vision of something much better is important for shaping things back home. There’s a place for small step-by-step changes, but sometimes you also need big vision.",
       "responder": {
         "responder_type": "select_option",
-        "options": ["won’t that just make me depressed?", "OK fine, lets get started"]
+        "options": ["won’t that get me down?", "OK fine, lets get started"]
       },
       "transitions": {
-        "won’t that just make me depressed?": "wont_that_make_me_depressed?",
+        "won’t that get me down?": "wont_that_make_me_depressed?",
         "OK fine, lets get started": "collect_email"
       }
     },
     {
       "id": "wont_that_make_me_depressed?",
-      "prompt": "So cynical. I’m glad I don’t live where you come from. Look, perhaps it will a bit, but you can come visit Neotopia whenever you like, and perhaps there’s a way to take a bit of it back home with you. I can’t say more now, you really just need to dive in.",
+      "prompt": "It might, I don't know humans from your time period that well. I've read that there was a lot of media showcasing negative views of the future, so perhaps a visit to Neotopia will merely provide some balance.",
       "responder": {
         "responder_type": "select_option",
-        "options": ["get started", "this is not for me, sorry"]
+        "options": ["could you explain a bit more?", "get started", "this is not for me, sorry"]
       },
       "transitions": {
+        "could you explain a bit more?": "more_explanation",
         "get started": "collect_email",
-        "this is not for me, sorry": "LEAVE_SITE"
+        "this is not for me, sorry": "leave_site"
+      }
+    },
+    {
+      "id": "leave_site",
+      "prompt": "That's ok, goodbye.",
+      "responder": {
+        "responder_type": "select_option",
+        "options": ["goodbye"]
+      },
+      "transitions": {
+        "goodbye": {"url": "https://www.google.com/"}
       }
     },
     {

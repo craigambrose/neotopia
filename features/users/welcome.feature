@@ -41,11 +41,11 @@ Scenario: Michael listens to intro and decides it's not for him
   Then I choose "Explain away"
   When I read "Neotopia is a utopia"
   Then I choose "Why do that?"
-  When I read "Perhaps you think everything about the society you come from is fine the way it is?"
-  Then I choose "yes, it’s fine"
-  When I read "I'm unable to offer you a tourist visa just now"
-  Then I choose "ok"
-  Then I'm redirected to "https://www.nytimes.com/"
+  When I read "Even if you like things about the society you come from, surely you see some room for improvement"
+  Then I choose "no, it's perfect"
+  When I read "Given that, a visit to Neotopia may not be of much intest to you, although you're still welcome of course."
+  Then I choose "i think i'll pass, goodbye"
+  Then I'm redirected to "https://www.google.com"
 
 Scenario: Michael forgets that he's already signed up before
   Given an existing user "Michael"
